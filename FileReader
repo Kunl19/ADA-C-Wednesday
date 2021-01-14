@@ -1,0 +1,48 @@
+//https://repl.it/@Kunl19/FileReader#main.cpp
+
+//Excercise 3
+
+#include <sys/stat.h>
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <ctime>
+#include <time.h>
+
+using namespace std;
+
+int main() {
+
+    char name[100];
+    cout << "Enter a name: ";
+    cin.getline(name, 100);
+
+    ifstream ifile;
+    ifile.open(name);
+    if (ifile) {
+        cout << "file exists \n";
+        //Opens file and will then read files.
+
+        string myText;
+        int timesRead = 0;
+
+        ifstream MyReadFile("new.txt");
+
+        cout << "Items within the file: \n";
+
+        while (getline (MyReadFile, myText)) {
+          timesRead++;
+          //Counts time while loop is executed eg lines read
+          cout << myText << "\n";
+        }
+
+        // Close the file
+        MyReadFile.close();
+
+        cout << "The total number of lines read: " << timesRead;
+
+    }
+    else {
+        cout << "file doesn't exist";
+    }
+}
