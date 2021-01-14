@@ -1,0 +1,47 @@
+#include <sys/stat.h>
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <ctime>
+#include <time.h>
+
+//Exercise 1
+
+//https://repl.it/@Kunl19/FileExists#main.cpp
+
+//Tested with main.cpp file
+
+
+using namespace std;
+
+int main()
+{
+    char name[100];
+    cout << "Enter a name: ";
+    cin.getline(name, 100);
+    ifstream ifile;
+    ifile.open(name);
+    if (ifile) {
+        cout << "file exists \n";
+        //Opens file and checks if it exists or not
+        struct stat sb;
+        
+        if (stat(name, &sb) != 0) {
+            cout << "Error Occured";
+        }
+
+
+
+        cout << "filename: " << name << "\n";
+        cout << "size in bytes: " << sb.st_size << "\n";
+        cout << "creation time: " << (ctime(&sb.st_ctime)) << "\n";
+        cout << "last modified: " << (ctime(&sb.st_mtime)) << "\n";
+
+        //converts times from epoch into dates
+
+            
+    }
+    else {
+        cout << "file doesn't exist";
+    }
+}
