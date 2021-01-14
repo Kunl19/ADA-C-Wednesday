@@ -1,0 +1,46 @@
+//https://repl.it/@Kunl19/FileWriter#main.cpp
+
+//File Writer
+
+
+#include <iostream>
+#include <iostream>
+#include <fstream> 
+#include <vector>
+
+using namespace std;
+
+void createFile(string fileText){
+  ofstream outfile ("list.csv", ios::app);
+  //ios::app allows us to append to the file
+  outfile << fileText << endl;
+  outfile.close();
+}
+
+int main() {
+ 
+  //Click Y/N to enter a name 
+  char input;
+  string name;
+
+  do{
+    cout << "Do you want add text into the file: (Y/N)";
+    cin >> input; 
+
+    if(input == 'N'){
+      break;
+    }
+    //Break loop when N is entered 
+    else{
+      vector<string> list;
+      cout << "Enter a name into the file \n";
+
+      cin >> name;
+      list.push_back (name);
+      createFile(name);
+    }
+  }
+  while(input == 'Y');
+  
+
+}
